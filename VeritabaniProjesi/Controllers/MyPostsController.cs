@@ -12,9 +12,9 @@ namespace VeritabaniProjesi.Controllers
 {
     public class MyPostsController : Controller
     {
-        private readonly FormAndUserContext _context;
+        private readonly MyPostsContext _context;
 
-        public MyPostsController(FormAndUserContext context)
+        public MyPostsController(MyPostsContext context)
         {
             _context = context;
         }

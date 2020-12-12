@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using VeritabaniProjesi.Controllers;
 using VeritabaniProjesi.Data;
 
 
@@ -29,10 +30,8 @@ namespace VeritabaniProjesi
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<FormAndUserContext>(options => {
-                options.UseOracle(@"User Id=SYSTEM; Password=1234qwer;" +
-                                  @"Data Source = localhost:1521/XEPDB1;");
-            });
+            ODBConnector.ConfigureODB();
+            ODBConnector.AddDbContextToOracleDb<MyPostsContext>(services);
         }
  
 

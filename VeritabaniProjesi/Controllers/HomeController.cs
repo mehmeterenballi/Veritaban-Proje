@@ -21,15 +21,6 @@ namespace VeritabaniProjesi.Controllers
 
         public IActionResult Index()
         {
-            //ODBConnector.Instance.OpenConnection();
-
-            //OracleDataReader reader = ODBConnector.Instance.ReadAllFromTable("Staff");
-            //while (reader.Read())
-            //    Console.WriteLine(reader["staffname"]);
-            
-            //reader.Dispose();
-            //ODBConnector.Instance.CloseConnection();
-
             return View();
         }
 

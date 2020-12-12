@@ -9,10 +9,8 @@ namespace VeritabaniProjesi.Models
     public class MyPosts
     {
         [Key] public int Id { get; set; }
-        public string UserName { get; set; }
+        [DataType(DataType.EmailAddress)]public string UserName { get; set; }
         public string Content { get; set; }
-
-        [DataType(DataType.Currency)]
-        public int Rating { get; set; }
+        public decimal Rating { get; set; }
     }
 }
