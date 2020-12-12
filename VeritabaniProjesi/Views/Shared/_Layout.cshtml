@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- <script type="text/javascript" src="js/main.js"> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/main.css">
+
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg smart-scroll navbar-light bg-light nav-pills fixed-top p-3" id="navbar">
+
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="" width="" height="" class="d-inline-block align-top" alt="">
+                <font class="text-info text-uppercase navbar-brand"><b>Dev Q&A</b></font>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse justify-content-end align-items-center" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item" id="index">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"
+                           style="margin-right:20px;">Ana Sayfa <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" style="margin-right:20px;" asp-area="" asp-controller="Home" asp-action="Login">Giris Yap</a>
+                    </li>
+                    <li class="nav-item" id="register">
+                        <a class="nav-link" style="margin-right:20px;" asp-area="" asp-controller="Home" asp-action="Register">Kayit Ol</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 px-90">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                </form>
+            </div>
+
+            <script>
+                // add padding top to show content behind navbar
+                $('body').css('padding-top', $('.navbar').outerHeight() + 'px')
+
+                // detect scroll top or down
+                let ss = $('.smart-scroll');
+
+                if (ss.length > 0) { // check if element exists
+                    let last_scroll_top = 0;
+
+                    $(window).on('scroll', () => {
+                        scroll_top = $(this).scrollTop();
+                        console.log(scroll_top);
+
+
+                        if (scroll_top < last_scroll_top) {
+                            ss.removeClass('scrolled-down').addClass('scrolled-up');
+                        }
+                        else if ($(window).scrollTop() > $('.navbar').outerHeight() * 0.75) {
+                            ss.removeClass('scrolled-up').addClass('scrolled-down');
+                        }
+                        last_scroll_top = scroll_top;
+                    });
+                }
+
+            </script>
+
+        </nav>
+    </header>
+
+    @RenderBody();
+
+    <footer class="page-footer font-small pt-4" style="background-color: #45526e; margin-top:20px;">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left mt-3 pb-3">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Proje Ödevi Company'si</h6>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tortor in ex porttitor egestas. Donec semper fermentum diam quis tincidunt. Vivamus a mollis turpis. Pellentesque vel sodales justo, a rutrum tellus. Fusce non pulvinar justo. </p>
+                </div>
+                <hr class="w-100 clearfix d-md-none">
+                <hr class="w-100 clearfix d-md-none">
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Linkler</h6>
+                    <p>
+                        <a href="#!">Hesabim</a>
+                    </p>
+                    <p>
+                        <a href="#!">Biz Kimiz</a>
+                    </p>
+                    <p>
+                        <a href="#!">Yardim</a>
+                    </p>
+                </div>
+                <hr class="w-100 clearfix d-md-none">
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Iletisim</h6>
+                    <p>
+                        <i class="fa fa-home mr-3"></i> Ankara, Çankaya, TR
+                    </p>
+                    <p>
+                        <i class="fa fa-envelope mr-3"></i> info@q&a.com
+                    </p>
+                    <p>
+                        <i class="fa fa-phone mr-3"></i> + 90 234 567 88
+                    </p>
+                    <p>
+                        <i class="fa fa-print mr-3"></i> + 90 234 567 89
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="row d-flex align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="text-center text-md-left">
+                        © 2020 Copyright:
+                        <strong> Mete ARSLAN & Mehmet Eren BALLI</strong>
+                    </p>
+
+                </div>
+                <div class="col-md-5 col-lg-4 ml-lg-0">
+                    <div class="text-center text-md-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
