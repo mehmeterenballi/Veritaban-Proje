@@ -8810,11 +8810,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mete ARSLAN\\source\\repos\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
+      "projectUniqueName": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
       "projectName": "VeritabaniProjesi",
-      "projectPath": "C:\\Users\\Mete ARSLAN\\source\\repos\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
+      "projectPath": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
       "packagesPath": "C:\\Users\\Mete ARSLAN\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mete ARSLAN\\source\\repos\\VeritabaniProjesi\\obj\\",
+      "outputPath": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
