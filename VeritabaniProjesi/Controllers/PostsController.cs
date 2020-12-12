@@ -10,23 +10,22 @@ using VeritabaniProjesi.Models;
 
 namespace VeritabaniProjesi.Controllers
 {
-    public class MyPostsController : Controller
+    public class PostsController : Controller
     {
-        private readonly MyPostsContext _context;
+        private readonly PostsDataContext _context;
 
-        public MyPostsController(MyPostsContext context)
+        public PostsController(PostsDataContext context)
         {
             _context = context;
         }
 
-
-        // GET: MyPosts
+        // GET: Posts
         public async Task<IActionResult> Index()
         {
             return View(await _context.Posts.ToListAsync());
         }
 
-        // GET: MyPosts/Details/5
+        // GET: Posts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +33,39 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var myPosts = await _context.Posts
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (myPosts == null)
+            if (post == null)
             {
                 return NotFound();
             }
 
-            return View(myPosts);
+            return View(post);
         }
 
-        // GET: MyPosts/Create
+        // GET: Posts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: MyPosts/Create
+        // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Content,Rating")] MyPosts myPosts)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Content,Rating")] Post post)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(myPosts);
+                _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(myPosts);
+            return View(post);
         }
 
-        // GET: MyPosts/Edit/5
+        // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +73,22 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var myPosts = await _context.Posts.FindAsync(id);
-            if (myPosts == null)
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
             {
                 return NotFound();
             }
-            return View(myPosts);
+            return View(post);
         }
 
-        // POST: MyPosts/Edit/5
+        // POST: Posts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Content,Rating")] MyPosts myPosts)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Content,Rating")] Post post)
         {
-            if (id != myPosts.Id)
+            if (id != post.Id)
             {
                 return NotFound();
             }
@@ -98,12 +97,12 @@ namespace VeritabaniProjesi.Controllers
             {
                 try
                 {
-                    _context.Update(myPosts);
+                    _context.Update(post);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MyPostsExists(myPosts.Id))
+                    if (!PostExists(post.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +113,10 @@ namespace VeritabaniProjesi.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(myPosts);
+            return View(post);
         }
 
-        // GET: MyPosts/Delete/5
+        // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,28 +124,28 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var myPosts = await _context.Posts
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (myPosts == null)
+            if (post == null)
             {
                 return NotFound();
             }
 
-            return View(myPosts);
+            return View(post);
         }
 
-        // POST: MyPosts/Delete/5
+        // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var myPosts = await _context.Posts.FindAsync(id);
-            _context.Posts.Remove(myPosts);
+            var post = await _context.Posts.FindAsync(id);
+            _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MyPostsExists(int id)
+        private bool PostExists(int id)
         {
             return _context.Posts.Any(e => e.Id == id);
         }

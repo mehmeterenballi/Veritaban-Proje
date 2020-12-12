@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BZC7uJO7329oT0TdBO/LQVxHrKLv0OV+PcwPuaZfIxz+ymlArG4V0sv43FRKU6VrLz8guX+JZd8BRokUjDEn/A==",
+  "dgSpecHash": "e+4ujtjZwltguom76HqfSrjlbBIr8dO+pvt2Xw/M3rRCQ9tCtP+aVXy9IIGdhSs/3i4+xrQXXw/0GRezZPFTvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mete ARSLAN\\source\\repos\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
+  "projectFilePath": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mete ARSLAN\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Mete ARSLAN\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

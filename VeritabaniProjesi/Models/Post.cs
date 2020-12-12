@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VeritabaniProjesi.Models
 {
-    public class MyPosts
+    public class Post
     {
         [Key] public int Id { get; set; }
         [DataType(DataType.EmailAddress)]public string UserName { get; set; }
