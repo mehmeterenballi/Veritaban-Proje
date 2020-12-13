@@ -31,7 +31,7 @@ namespace VeritabaniProjesi
             services.AddControllersWithViews();
 
             ODBConnector.ConfigureODB();
-            ODBConnector.AddDbContextToOracleDb<MyPostsContext>(services);
+            ODBConnector.AddDbContextToOracleDb<PostsDataContext>(services);
         }
  
 
