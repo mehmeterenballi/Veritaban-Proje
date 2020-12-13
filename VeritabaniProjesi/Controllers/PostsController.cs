@@ -54,7 +54,7 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserName,Content,Rating")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Sender,Content,Rating,Date")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Content,Rating")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Sender,Content,Rating,Date")] Post post)
         {
             if (id != post.Id)
             {
