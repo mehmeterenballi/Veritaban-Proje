@@ -32,6 +32,10 @@ namespace VeritabaniProjesi.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
 
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
+
                     b.Property<int>("Rating")
                         .HasColumnType("NUMBER(10)");
 

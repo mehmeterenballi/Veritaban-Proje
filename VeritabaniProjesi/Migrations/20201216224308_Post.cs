@@ -4,7 +4,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 
 namespace VeritabaniProjesi.Migrations
 {
-    public partial class posts : Migration
+    public partial class Post : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,6 +14,7 @@ namespace VeritabaniProjesi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
+                    PostTitle = table.Column<string>(maxLength: 20, nullable: true),
                     Sender = table.Column<string>(maxLength: 20, nullable: true),
                     Content = table.Column<string>(nullable: true),
                     Rating = table.Column<int>(nullable: false),

@@ -10,8 +10,8 @@ using VeritabaniProjesi.Data;
 namespace VeritabaniProjesi.Migrations
 {
     [DbContext(typeof(PostsDataContext))]
-    [Migration("20201213093318_posts")]
-    partial class posts
+    [Migration("20201216224308_Post")]
+    partial class Post
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,10 @@ namespace VeritabaniProjesi.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<int>("Rating")
                         .HasColumnType("NUMBER(10)");

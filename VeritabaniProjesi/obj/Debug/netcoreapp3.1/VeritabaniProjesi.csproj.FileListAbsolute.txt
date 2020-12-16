@@ -505,7 +505,6 @@ C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.AssemblyInfoInputs.cache
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.AssemblyInfo.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.csproj.CoreCompileInputs.cache
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.RazorAssemblyInfo.cache
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.RazorAssemblyInfo.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\staticwebassets\VeritabaniProjesi.StaticWebAssets.Manifest.cache
