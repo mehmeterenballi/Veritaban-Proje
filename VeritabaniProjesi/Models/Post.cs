@@ -10,7 +10,7 @@ namespace VeritabaniProjesi.Models
 {
     public class Post
     {
-        [Key, NotNull, Column(TypeName = "decimal(8, 2)")] public int Id { get; set; }
+        [Key, NotNull] public int Id { get; set; }
 
         [MaxLength(20), MinLength(2), NotNull, Display(Name = "Title")]public string PostTitle { get; set; }
         [MaxLength(20), MinLength(2), NotNull]public string Sender { get; set; }

@@ -12,7 +12,7 @@ namespace VeritabaniProjesi.Migrations
                 name: "Posts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "decimal(8, 2)", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
                     PostTitle = table.Column<string>(maxLength: 20, nullable: true),
                     Sender = table.Column<string>(maxLength: 20, nullable: true),

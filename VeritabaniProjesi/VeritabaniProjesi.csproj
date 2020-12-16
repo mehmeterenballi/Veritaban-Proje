@@ -11,6 +11,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201216215536_post.cs" />
     <Compile Remove="Migrations\20201216215536_post.Designer.cs" />
+    <Compile Remove="Migrations\20201216223948_post.cs" />
+    <Compile Remove="Migrations\20201216223948_post.Designer.cs" />
+    <Compile Remove="Migrations\20201216224030_post.cs" />
+    <Compile Remove="Migrations\20201216224030_post.Designer.cs" />
+    <Compile Remove="Migrations\20201216224115_Post.cs" />
+    <Compile Remove="Migrations\20201216224115_Post.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
