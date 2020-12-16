@@ -23,7 +23,7 @@ namespace VeritabaniProjesi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)")
+                        .HasColumnType("decimal(8, 2)")
                         .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
@@ -31,6 +31,10 @@ namespace VeritabaniProjesi.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<int>("Rating")
                         .HasColumnType("NUMBER(10)");

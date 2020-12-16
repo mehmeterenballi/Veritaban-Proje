@@ -10,8 +10,8 @@ using VeritabaniProjesi.Data;
 namespace VeritabaniProjesi.Migrations
 {
     [DbContext(typeof(PostsDataContext))]
-    [Migration("20201213093318_posts")]
-    partial class posts
+    [Migration("20201216220702_post")]
+    partial class Post
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,7 +25,7 @@ namespace VeritabaniProjesi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)")
+                        .HasColumnType("decimal(8, 2)")
                         .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
@@ -33,6 +33,10 @@ namespace VeritabaniProjesi.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
 
                     b.Property<int>("Rating")
                         .HasColumnType("NUMBER(10)");
