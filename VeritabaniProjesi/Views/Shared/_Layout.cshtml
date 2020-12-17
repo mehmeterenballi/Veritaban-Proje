@@ -46,15 +46,19 @@
                         <a class="nav-link" style="margin-right:20px;" asp-area="" asp-controller="Home" asp-action="Register">Kayit Ol</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0 px-90">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Ara" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
-                </form>
+
+                <div class="form-inline my-2 my-lg-0 px-90 nav-item" method="get">
+                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+                    {
+                        <input class="form-control mr-sm-2" placeholder="Ara" name="SearchString" />
+                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Ara" asp-controller ="Posts" asp-action="Index"/>
+                    }
+                </div>
             </div>
 
             <script>
                 // add padding top to show content behind navbar
-                $('body').css('padding-top', $('.navbar').outerHeight() + 'px')
+                $('body').css('padding-top', $('.navbar').outerHeight() + 'px');
 
                 // detect scroll top or down
                 let ss = $('.smart-scroll');

@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using VeritabaniProjesi.Data;
 using VeritabaniProjesi.Models;
 
-namespace VeritabaniProjesi.Views.Posts
+namespace VeritabaniProjesi.Pages.Posts
 {
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly VeritabaniProjesi.Data.PostsDataContext _context;
 
-        public DeleteModel(VeritabaniProjesi.Data.PostsDataContext context)
+        public EditModel(VeritabaniProjesi.Data.PostsDataContext context)
         {
             _context = context;
         }
@@ -38,22 +41,40 @@ namespace VeritabaniProjesi.Views.Posts
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            Post = await _context.Posts.FindAsync(id);
 
-            if (Post != null)
+            _context.Attach(Post).State = EntityState.Modified;
+
+            try
             {
-                _context.Posts.Remove(Post);
                 await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PostExists(Post.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return RedirectToPage("./Index");
+        }
+
+        private bool PostExists(int id)
+        {
+            return _context.Posts.Any(e => e.Id == id);
         }
     }
 }
