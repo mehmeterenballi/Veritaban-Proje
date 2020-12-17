@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using VeritabaniProjesi.Data;
 using VeritabaniProjesi.Models;
 
-namespace VeritabaniProjesi.Views.Posts
+namespace VeritabaniProjesi.Pages.Posts
 {
     public class CreateModel : PageModel
     {
@@ -35,6 +35,7 @@ namespace VeritabaniProjesi.Views.Posts
             {
                 return Page();
             }
+
 
             _context.Posts.Add(Post);
             await _context.SaveChangesAsync();

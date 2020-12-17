@@ -8,17 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using VeritabaniProjesi.Data;
 using VeritabaniProjesi.Models;
 
-namespace VeritabaniProjesi.Views.Posts
+namespace VeritabaniProjesi.Pages.Posts
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly VeritabaniProjesi.Data.PostsDataContext _context;
 
-        public DetailsModel(VeritabaniProjesi.Data.PostsDataContext context)
+        public DeleteModel(VeritabaniProjesi.Data.PostsDataContext context)
         {
             _context = context;
         }
 
+        [BindProperty]
         public Post Post { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -35,6 +36,24 @@ namespace VeritabaniProjesi.Views.Posts
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Post = await _context.Posts.FindAsync(id);
+
+            if (Post != null)
+            {
+                _context.Posts.Remove(Post);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }

@@ -530,8 +530,8 @@ C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.genruntimeconfig.cache
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Pages\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Create.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Delete.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Details.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Edit.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Posts\Index.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Pages\Posts\Create.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Pages\Posts\Delete.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Pages\Posts\Details.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Pages\Posts\Edit.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Pages\Posts\Index.cshtml.g.cs

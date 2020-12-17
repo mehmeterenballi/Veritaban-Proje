@@ -29,6 +29,7 @@ namespace VeritabaniProjesi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             ODBConnector.ConfigureODB();
             ODBConnector.AddDbContextToOracleDb<PostsDataContext>(services);
@@ -62,6 +63,8 @@ namespace VeritabaniProjesi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }
