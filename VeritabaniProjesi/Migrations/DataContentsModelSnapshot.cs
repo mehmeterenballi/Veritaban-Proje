@@ -8,8 +8,8 @@ using VeritabaniProjesi.Data;
 
 namespace VeritabaniProjesi.Migrations
 {
-    [DbContext(typeof(PostsDataContext))]
-    partial class PostsDataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DataContents))]
+    partial class DataContentsModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,34 @@ namespace VeritabaniProjesi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("VeritabaniProjesi.Models.Title", b =>
+                {
+                    b.Property<string>("PostTitle")
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.HasKey("PostTitle");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("Titles");
+                });
+
+            modelBuilder.Entity("VeritabaniProjesi.Models.Title", b =>
+                {
+                    b.HasOne("VeritabaniProjesi.Models.Post", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

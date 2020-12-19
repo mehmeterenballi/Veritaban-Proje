@@ -4,7 +4,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 
 namespace VeritabaniProjesi.Migrations
 {
-    public partial class Post : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,10 +24,37 @@ namespace VeritabaniProjesi.Migrations
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Titles",
+                columns: table => new
+                {
+                    PostTitle = table.Column<string>(maxLength: 20, nullable: false),
+                    QuestionId = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Titles", x => x.PostTitle);
+                    table.ForeignKey(
+                        name: "FK_Titles_Posts_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Posts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Titles_QuestionId",
+                table: "Titles",
+                column: "QuestionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Titles");
+
             migrationBuilder.DropTable(
                 name: "Posts");
         }

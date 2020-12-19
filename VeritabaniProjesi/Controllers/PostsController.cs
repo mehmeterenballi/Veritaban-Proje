@@ -12,17 +12,17 @@ namespace VeritabaniProjesi.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly PostsDataContext _context;
+        private readonly DataContents _contents;
 
-        public PostsController(PostsDataContext context)
+        public PostsController(DataContents contents)
         {
-            _context = context;
+            _contents = contents;
         }
 
         // GET: Posts
         public async Task<IActionResult> Index(string searchString)
         {
-            var pages = from p in _context.Posts select p;
+            var pages = from p in _contents.Posts select p;
 
             if (!string.IsNullOrEmpty(searchString))
                 pages = pages.Where(s => s.PostTitle.ToLower().Contains(searchString.ToLower()));
@@ -38,7 +38,7 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
+            var post = await _contents.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
@@ -66,8 +66,8 @@ namespace VeritabaniProjesi.Controllers
                 SetPostValuesToDefault(ref post);
 
 
-                _context.Add(post);
-                await _context.SaveChangesAsync();
+                _contents.Add(post);
+                await _contents.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(post);
@@ -81,7 +81,7 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts.FindAsync(id);
+            var post = await _contents.Posts.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
@@ -107,8 +107,8 @@ namespace VeritabaniProjesi.Controllers
                 {
                     SetPostValuesToDefault(ref post);
 
-                    _context.Update(post);
-                    await _context.SaveChangesAsync();
+                    _contents.Update(post);
+                    await _contents.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -134,7 +134,7 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
+            var post = await _contents.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
@@ -149,15 +149,15 @@ namespace VeritabaniProjesi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
-            _context.Posts.Remove(post);
-            await _context.SaveChangesAsync();
+            var post = await _contents.Posts.FindAsync(id);
+            _contents.Posts.Remove(post);
+            await _contents.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int id)
         {
-            return _context.Posts.Any(e => e.Id == id);
+            return _contents.Posts.Any(e => e.Id == id);
         }
 
         private void SetPostValuesToDefault(ref Post post)
