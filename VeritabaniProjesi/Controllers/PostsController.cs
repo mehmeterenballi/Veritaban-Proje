@@ -25,7 +25,7 @@ namespace VeritabaniProjesi.Controllers
             var pages = from p in _contents.Posts select p;
 
             if (!string.IsNullOrEmpty(searchString))
-                pages = pages.Where(s => s.PostTitle.ToLower().Contains(searchString.ToLower()));
+                pages = pages.Where(s => s.PostTitle == searchString);
 
             return View(await pages.ToListAsync());
         }

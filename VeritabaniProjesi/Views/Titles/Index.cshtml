@@ -1,54 +1,44 @@
 ﻿@model IEnumerable<VeritabaniProjesi.Models.Title>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Basliklar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container">
+    <h1>Basliklar</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PostTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.QuestionId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Question.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuestionId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PostTitle">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PostTitle">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PostTitle">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create">Soru Sor</a>
+    </p>
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a class="list-group-item list-group-item-action mb-3" style="padding: 0" 
+               asp-controller="Posts" asp-action="Index" asp-route-searchstring="@item.PostTitle">
+                <div class="card">    
+
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            @Html.DisplayFor(modelItem => item.PostTitle)
+                        </h4>
+
+                        <p class="card-text">
+                            @Html.DisplayFor(modelItem => item.Question.Content)
+                        </p>
+                    </div>
+
+                    <div class="card-footer text-muted flex-row d-flex justify-content-between">
+                        <div>
+                            @Html.DisplayFor(modelItem => item.Question.Sender)
+                        </div>
+
+                        <div>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
