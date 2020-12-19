@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Loader;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -68,6 +69,9 @@ namespace VeritabaniProjesi.Controllers
             if (ModelState.IsValid)
             {
                 SetTitleValuesToDefault(ref title);
+                
+
+
 
                 _context.Add(title);
                 await _context.SaveChangesAsync();
