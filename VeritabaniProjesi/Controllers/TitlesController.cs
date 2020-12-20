@@ -69,7 +69,17 @@ namespace VeritabaniProjesi.Controllers
             if (ModelState.IsValid)
             {
                 SetTitleValuesToDefault(ref title);
-                
+
+
+                title.Question = new Post
+                {
+                    Content = "hello world",
+                    Date = title.Date,
+                    PostTitle = title.PostTitle,
+                    Rating = 0,
+                    Sender = "Fix It"
+                };
+
 
 
 
