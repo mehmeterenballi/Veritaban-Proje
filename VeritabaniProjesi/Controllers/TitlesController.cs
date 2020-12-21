@@ -8,14 +8,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VeritabaniProjesi.Data;
 using VeritabaniProjesi.Models;
+using VeritabaniProjesi.ViewModel;
 
 namespace VeritabaniProjesi.Controllers
 {
     public class TitlesController : Controller
     {
-        private readonly DataContents _context;
+        private readonly DataContext _context;
 
-        public TitlesController(DataContents context)
+        public TitlesController(DataContext context)
         {
             _context = context;
         }
@@ -64,31 +65,35 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostTitle,QuestionId,Date")] Title title)
+        public async Task<IActionResult> Create([Bind("PostTitle, Content, Sender, Date")] CreateTitleViewModel ctvm)
         {
+            Title title = new Title();
+
             if (ModelState.IsValid)
             {
                 SetTitleValuesToDefault(ref title);
+                title.PostTitle = ctvm.PostTitle;
+                title.Date = DateTime.Now;
 
 
                 title.Question = new Post
                 {
-                    Content = "hello world",
-                    Date = title.Date,
                     PostTitle = title.PostTitle,
+                    Date = title.Date,
+                    Sender = "Fix It",
                     Rating = 0,
-                    Sender = "Fix It"
+                    Content = ctvm.Content
                 };
 
-
-
+                title.QuestionId = title.Question.Id;
 
                 _context.Add(title);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), ctvm.PostTitle);
             }
+
             ViewData["QuestionId"] = new SelectList(_context.Posts, "Id", "Id", title.QuestionId);
-            return View(title);
+            return View(ctvm);
         }
 
      

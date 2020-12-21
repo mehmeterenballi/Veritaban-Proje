@@ -9,7 +9,7 @@ using VeritabaniProjesi.Data;
 
 namespace VeritabaniProjesi.Migrations
 {
-    [DbContext(typeof(DataContents))]
+    [DbContext(typeof(DataContext))]
     [Migration("20201218173954_First")]
     partial class First
     {
