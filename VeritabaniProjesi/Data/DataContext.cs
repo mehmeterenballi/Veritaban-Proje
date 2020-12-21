@@ -8,12 +8,12 @@ using VeritabaniProjesi.Models;
 
 namespace VeritabaniProjesi.Data
 {
-    public class DataContents : DbContext
+    public class DataContext : DbContext
     {
         public DbSet<Post> Posts { get; set;}
         public DbSet<Title> Titles { get; set;}
 
-        public DataContents(DbContextOptions<DataContents> options): base(options) {}
+        public DataContext(DbContextOptions<DataContext> options): base(options) {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

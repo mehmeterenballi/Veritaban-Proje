@@ -8,7 +8,7 @@ using VeritabaniProjesi.Data;
 
 namespace VeritabaniProjesi.Migrations
 {
-    [DbContext(typeof(DataContents))]
+    [DbContext(typeof(DataContext))]
     partial class DataContentsModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

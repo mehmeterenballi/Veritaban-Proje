@@ -15,7 +15,7 @@
         @foreach (var item in Model)
         {
             <a class="list-group-item list-group-item-action mb-3" style="padding: 0" 
-               asp-controller="Posts" asp-action="Index" asp-route-searchstring="@item.PostTitle">
+               asp-controller="Posts" asp-action="Index" asp-route-title="@item.PostTitle">
                 <div class="card">    
 
                     <div class="card-body">
