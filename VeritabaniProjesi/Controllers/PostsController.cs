@@ -56,6 +56,7 @@ namespace VeritabaniProjesi.Controllers
         // GET: Posts/Create
         public IActionResult Create(string title)
         {
+            TempData["title"] = title;
             return View();
         }
 
@@ -64,8 +65,11 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(string title , [Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
+        public async Task<IActionResult> Create([FromQuery(Name = "title")]string title , [Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
         {
+            if(TempData.ContainsKey("title"))
+                title = (string)TempData["title"];
+
             if (ModelState.IsValid)
             {
                 SetPostValuesToDefault(ref post);
@@ -73,7 +77,11 @@ namespace VeritabaniProjesi.Controllers
 
                 _contents.Add(post);
                 await _contents.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new {title = title});
+
+                if (string.IsNullOrEmpty(title))
+                    throw new Exception("Title Is Empty");
+
+                return RedirectToAction(nameof(Index), new { title = title});
             }
 
             return View(post);
@@ -92,6 +100,7 @@ namespace VeritabaniProjesi.Controllers
             {
                 return NotFound();
             }
+
             return View(post);
         }
 
@@ -127,7 +136,7 @@ namespace VeritabaniProjesi.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), {});
             }
             return View(post);
         }
