@@ -21,7 +21,7 @@ namespace VeritabaniProjesi.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(model);
         }
 
         public IActionResult Privacy()

@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oracle.EntityFrameworkCore.Metadata;
 using VeritabaniProjesi.Data;
@@ -10,16 +9,32 @@ using VeritabaniProjesi.Data;
 namespace VeritabaniProjesi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201218173954_First")]
-    partial class First
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "3.1.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            modelBuilder.Entity("VeritabaniProjesi.Models.Announcement", b =>
+                {
+                    b.Property<string>("Title")
+                        .HasColumnType("NVARCHAR2(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.HasKey("Title");
+
+                    b.ToTable("Announcements");
+                });
 
             modelBuilder.Entity("VeritabaniProjesi.Models.Post", b =>
                 {
