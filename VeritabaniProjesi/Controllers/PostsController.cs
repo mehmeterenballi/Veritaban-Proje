@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +22,13 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Posts
-        public async Task<IActionResult> Index(string? title)
+        public async Task<IActionResult> Index([FromQuery(Name = "title")]string? title)
         {
             if (title == null)
                 return NotFound();
+
+            TempData["Title"] = title;
+
 
             var pages = from p in _contents.Posts select p;
 
@@ -36,12 +40,11 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Posts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? title, int? id)
         {
-            if (id == null)
-            {
+            if (id == null || title == null)
                 return NotFound();
-            }
+            
 
             var post = await _contents.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -54,9 +57,11 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Posts/Create
-        public IActionResult Create(string title)
+        public IActionResult Create([FromQuery(Name = "title")]string? title)
         {
-            TempData["title"] = title;
+            if (title == null)
+                return NotFound();
+
             return View();
         }
 
@@ -65,32 +70,29 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromQuery(Name = "title")]string title , [Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
         {
-            if(TempData.ContainsKey("title"))
-                title = (string)TempData["title"];
+            if (post.PostTitle == null)
+                return NotFound();
 
             if (ModelState.IsValid)
             {
                 SetPostValuesToDefault(ref post);
-                post.PostTitle = title;
 
                 _contents.Add(post);
                 await _contents.SaveChangesAsync();
 
-                if (string.IsNullOrEmpty(title))
-                    throw new Exception("Title Is Empty");
 
-                return RedirectToAction(nameof(Index), new { title = title});
+                return RedirectToAction(nameof(Index), new { title = post.PostTitle});
             }
 
             return View(post);
         }
 
         // GET: Posts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string? title, int? id)
         {
-            if (id == null)
+            if (id == null  || title == null)
             {
                 return NotFound();
             }
@@ -136,13 +138,13 @@ namespace VeritabaniProjesi.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), {});
+                return RedirectToAction(nameof(Index), new {title = TempData["Title"]});
             }
             return View(post);
         }
 
         // GET: Posts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string title, int? id)
         {
             if (id == null)
             {
@@ -167,7 +169,7 @@ namespace VeritabaniProjesi.Controllers
             var post = await _contents.Posts.FindAsync(id);
             _contents.Posts.Remove(post);
             await _contents.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new {title = TempData["Title"]});
         }
 
         private bool PostExists(int id)
