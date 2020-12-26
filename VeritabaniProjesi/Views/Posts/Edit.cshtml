@@ -1,7 +1,7 @@
 ﻿@model VeritabaniProjesi.Models.Post
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = Context.Request.Query["title"].ToString();
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -38,7 +38,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index", asp-route-title="@TempData["Title"]">Back to List</a>
 </div>
 
 @section Scripts {

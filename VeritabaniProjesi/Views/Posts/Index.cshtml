@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<VeritabaniProjesi.Models.Post>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Context.Request.Query["title"].ToString();
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -54,9 +54,9 @@
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-title = "@ViewData["Title"]">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-title = "@ViewData["Title"]">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-title = "@ViewData["Title"]">Delete</a>
                 </td>
             </tr>
         }

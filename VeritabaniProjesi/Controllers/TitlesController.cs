@@ -56,7 +56,6 @@ namespace VeritabaniProjesi.Controllers
         // GET: Titles/Create
         public IActionResult Create()
         {
-            ViewData["QuestionId"] = new SelectList(_context.Posts, "Id", "Id");
             return View();
         }
 
@@ -89,10 +88,9 @@ namespace VeritabaniProjesi.Controllers
 
                 _context.Add(title);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), ctvm.PostTitle);
+                return RedirectToAction("Index", "Posts", new{title = title.PostTitle});
             }
 
-            ViewData["QuestionId"] = new SelectList(_context.Posts, "Id", "Id", title.QuestionId);
             return View(ctvm);
         }
 
