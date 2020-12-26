@@ -31,6 +31,10 @@
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="3.19.80" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES2018</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>

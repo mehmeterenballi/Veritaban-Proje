@@ -138,7 +138,7 @@ namespace VeritabaniProjesi.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), new {title = TempData["Title"]});
+                return RedirectToAction(nameof(Index), new {title = post.PostTitle});
             }
             return View(post);
         }
