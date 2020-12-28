@@ -23,7 +23,7 @@
 
 <body>
     @{
-        await Html.RenderPartialAsync("_Navbar");
+        await Html.RenderPartialAsync("PartialViews/_Navbar");
     }
         
     <div style="min-height: 50vh">
@@ -31,7 +31,7 @@
     </div>
 
     @{
-        await Html.RenderPartialAsync("_Footer");
+        await Html.RenderPartialAsync("PartialViews/_Footer");
     }
     
     @await RenderSectionAsync("Scripts", false)
