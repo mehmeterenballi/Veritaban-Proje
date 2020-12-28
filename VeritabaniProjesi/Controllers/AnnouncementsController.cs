@@ -58,7 +58,11 @@ namespace VeritabaniProjesi.Controllers
         {
             if (ModelState.IsValid)
             {
+                announcement.SourceList = new List<string>();
+
+
                 _context.Add(announcement);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

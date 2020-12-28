@@ -1,0 +1,28 @@
+﻿@model IEnumerable<VeritabaniProjesi.Models.Announcement>
+
+
+@foreach (var annoucment in Model)
+{
+    <div style="display: table-row">
+        <h3>@annoucment.Title</h3>
+        <p class="lead">@annoucment.Content</p>
+        <p>@annoucment.SourceList</p>
+        <p>@annoucment.Date</p>
+
+        <dl class="inline">
+            <dt>@Html.DisplayFor(model => annoucment.Title)</dt>
+            <dt>@Html.DisplayFor(model => annoucment.Content)</dt>
+            <dt>@Html.DisplayFor(model => annoucment.Date)</dt>
+            @*<dt>@Html.DisplayFor(x => x.SourceList)</dt>*@
+            
+            @if (annoucment.SourceList != null && annoucment.SourceList.Any())
+            {
+                @foreach (var source in annoucment.SourceList)
+                {
+                    <dt>Source</dt>
+                    <dd>@Html.DisplayFor(x => source)</dd>
+                }
+            }
+        </dl>
+    </div>
+}

@@ -519,7 +519,6 @@ C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Home\Register.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.RazorTargetAssemblyInfo.cache
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\VeritabaniProjesi.RazorTargetAssemblyInfo.cs
@@ -538,10 +537,12 @@ C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Titles\Delete.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Titles\Details.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Titles\Index.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Navbar.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Footer.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Create.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Delete.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Details.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Edit.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Index.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Announcements.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Footer.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Navbar.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_ValidationScriptsPartial.cshtml.g.cs
