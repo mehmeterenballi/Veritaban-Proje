@@ -14,14 +14,17 @@ namespace VeritabaniProjesi.Models
         [Key, NotNull, MaxLength(40), Required]
         public string Title { get; set; }
         public string Content { get; set; }
-        public string SourceListJson { get; set; }
+        public string SourceListString { get; set; }
 
         [NotMapped]
         public string[] SourceList
         {
             get
             {
-                return SourceListJson.Split(';');
+                if (SourceListString == null)
+                    return null;
+
+                return SourceListString.Split(';');
             }
         }
 

@@ -14,7 +14,7 @@ namespace VeritabaniProjesi.Migrations
                 {
                     Title = table.Column<string>(maxLength: 40, nullable: false),
                     Content = table.Column<string>(nullable: true),
-                    SourceListJson = table.Column<string>(nullable: true),
+                    SourceListString = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
