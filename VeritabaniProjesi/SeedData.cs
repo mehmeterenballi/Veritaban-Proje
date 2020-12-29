@@ -28,7 +28,15 @@ namespace VeritabaniProjesi.Models
                     context.Titles.Add(
                         new Title{PostTitle = firstMessage.PostTitle, Date = firstMessage.Date, Question = firstMessage, QuestionId = firstMessage.Id}
                         );
-                
+
+                if (!context.Titles.Any())
+                    context.Announcements.Add(new Announcement
+                    {
+                        Title = "Important",
+                        Content = "Site Will Be Under Maintenance Between 10:00 And 20:00.(+3 GM)",
+                        Date = DateTime.UtcNow,
+                        SourceListString = ""
+                    });
 
                 context.SaveChanges();
             }

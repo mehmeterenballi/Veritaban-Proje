@@ -537,12 +537,12 @@ C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Titles\Delete.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Titles\Details.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Titles\Index.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Announcements.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Footer.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Navbar.cshtml.g.cs
+C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Create.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Delete.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Details.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Edit.cshtml.g.cs
 C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Announcements\Index.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Announcements.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Footer.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_Navbar.cshtml.g.cs
-C:\Users\Mete ARSLAN\Desktop\GitHub\Veritaban-Proje\VeritabaniProjesi\obj\Debug\netcoreapp3.1\Razor\Views\Shared\PartialViews\_ValidationScriptsPartial.cshtml.g.cs

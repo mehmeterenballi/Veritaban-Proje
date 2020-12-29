@@ -17,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Content)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.SourceListString)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th></th>
@@ -27,6 +30,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceListString)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

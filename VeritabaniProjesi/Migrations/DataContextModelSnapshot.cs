@@ -31,7 +31,7 @@ namespace VeritabaniProjesi.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
 
-                    b.Property<string>("SourceListJson")
+                    b.Property<string>("SourceListString")
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Title");

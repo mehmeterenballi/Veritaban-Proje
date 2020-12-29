@@ -10,7 +10,7 @@ using VeritabaniProjesi.Data;
 namespace VeritabaniProjesi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201229152911_basicTables")]
+    [Migration("20201229163307_basicTables")]
     partial class basicTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace VeritabaniProjesi.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
 
-                    b.Property<string>("SourceListJson")
+                    b.Property<string>("SourceListString")
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Title");
