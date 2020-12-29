@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace VeritabaniProjesi.Models
 {
@@ -13,7 +14,17 @@ namespace VeritabaniProjesi.Models
         [Key, NotNull, MaxLength(40), Required]
         public string Title { get; set; }
         public string Content { get; set; }
-        [NotMapped]public List<string> SourceList { get; set; }
+        public string SourceListJson { get; set; }
+
+        [NotMapped]
+        public string[] SourceList
+        {
+            get
+            {
+                return SourceListJson.Split(';');
+            }
+        }
+
         [DataType(DataType.DateTime)] public DateTime Date { get; set; }
     }
 }
