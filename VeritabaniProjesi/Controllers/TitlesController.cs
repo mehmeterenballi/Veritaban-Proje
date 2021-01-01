@@ -14,9 +14,9 @@ namespace VeritabaniProjesi.Controllers
 {
     public class TitlesController : Controller
     {
-        private readonly DataContext _context;
+        private readonly BasicDataContext _context;
 
-        public TitlesController(DataContext context)
+        public TitlesController(BasicDataContext context)
         {
             _context = context;
         }

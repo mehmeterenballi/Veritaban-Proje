@@ -29,9 +29,10 @@ namespace VeritabaniProjesi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             ODBConnector.ConfigureODB();
-            ODBConnector.AddDbContextToOracleDb<DataContext>(services);
+            ODBConnector.AddDbContextToOracleDb<BasicDataContext>(services);
         }
  
 
@@ -55,10 +56,13 @@ namespace VeritabaniProjesi
 
             app.UseRouting();
 
+            app.UseAuthentication();//For Identity
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();//For Identity
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

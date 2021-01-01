@@ -14,9 +14,9 @@ namespace VeritabaniProjesi.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly DataContext _contents;
+        private readonly BasicDataContext _contents;
 
-        public PostsController(DataContext contents)
+        public PostsController(BasicDataContext contents)
         {
             _contents = contents;
         }

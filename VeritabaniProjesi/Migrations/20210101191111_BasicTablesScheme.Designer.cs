@@ -9,9 +9,9 @@ using VeritabaniProjesi.Data;
 
 namespace VeritabaniProjesi.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20201229163307_basicTables")]
-    partial class basicTables
+    [DbContext(typeof(BasicDataContext))]
+    [Migration("20210101191111_BasicTablesScheme")]
+    partial class BasicTablesScheme
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
