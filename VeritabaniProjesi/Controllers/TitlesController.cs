@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,13 @@ namespace VeritabaniProjesi.Controllers
     public class TitlesController : Controller
     {
         private readonly BasicDataContext _context;
+        private readonly UserManager<MyUser> _userManager;
 
-        public TitlesController(BasicDataContext context)
+
+        public TitlesController(BasicDataContext context, UserManager<MyUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Titles
@@ -32,25 +36,6 @@ namespace VeritabaniProjesi.Controllers
             var dataContents = pages.Include(t => t.Question);
 
             return View(await dataContents.ToListAsync());
-        }
-
-        // GET: Titles/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var title = await _context.Titles
-                .Include(t => t.Question)
-                .FirstOrDefaultAsync(m => m.PostTitle == id);
-            if (title == null)
-            {
-                return NotFound();
-            }
-
-            return View(title);
         }
 
         // GET: Titles/Create
@@ -74,12 +59,13 @@ namespace VeritabaniProjesi.Controllers
                 title.PostTitle = ctvm.PostTitle;
                 title.Date = DateTime.Now;
 
+                var user  = _userManager.GetUserAsync(User);
 
                 title.Question = new Post
                 {
                     PostTitle = title.PostTitle,
                     Date = title.Date,
-                    Sender = "Fix It",
+                    Sender = user.Result.NickName,
                     Rating = 0,
                     Content = ctvm.Content
                 };

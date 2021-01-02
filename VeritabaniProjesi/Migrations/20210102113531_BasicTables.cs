@@ -4,7 +4,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 
 namespace VeritabaniProjesi.Migrations
 {
-    public partial class BasicTablesScheme : Migration
+    public partial class BasicTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

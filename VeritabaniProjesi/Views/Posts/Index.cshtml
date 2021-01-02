@@ -1,5 +1,11 @@
 ﻿@model IEnumerable<VeritabaniProjesi.Models.Post>
 
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<MyUser> SignInManager
+@inject UserManager<MyUser> UserManager
+
+
 @{
     ViewData["Title"] = Context.Request.Query["title"].ToString();
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,26 +21,28 @@
 {
     <table class="table">
         <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PostTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
+        
+        @{ MyUser myUser = UserManager.GetUserAsync(User).Result;}
         @foreach (var item in Model)
         {
             <tr>
@@ -53,10 +61,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
+
+
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-title = "@ViewData["Title"]">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-title = "@ViewData["Title"]">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-title = "@ViewData["Title"]">Delete</a>
+                    @if (myUser.NickName == item.Sender || myUser.IsAdmin)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Delete</a>
+                    }
                 </td>
             </tr>
         }

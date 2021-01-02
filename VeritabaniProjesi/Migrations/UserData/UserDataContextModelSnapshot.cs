@@ -172,11 +172,18 @@ namespace VeritabaniProjesi.Migrations.UserData
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("NUMBER(1)");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("NUMBER(1)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("NVARCHAR2(256)")

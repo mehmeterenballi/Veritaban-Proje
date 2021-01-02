@@ -46,6 +46,9 @@ namespace VeritabaniProjesi.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required, Display(Name = "Nick Name")]
+            public string NickName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -75,7 +78,7 @@ namespace VeritabaniProjesi.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new MyUser { UserName = Input.Email, Email = Input.Email };
+                var user = new MyUser { UserName = Input.Email, Email = Input.Email, NickName = Input.NickName, IsAdmin = false};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

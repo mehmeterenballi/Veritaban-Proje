@@ -1,4 +1,7 @@
-﻿@model IEnumerable<VeritabaniProjesi.Models.Title>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<MyUser> UserManager
+
+@model IEnumerable<VeritabaniProjesi.Models.Title>
 
 @{
     ViewData["Title"] = "Basliklar";
@@ -12,11 +15,12 @@
         <a asp-action="Create">Soru Sor</a>
     </p>
     <div class="list-group">
+        @{ MyUser myUser = UserManager.GetUserAsync(User).Result;}
         @foreach (var item in Model)
         {
-            <a class="list-group-item list-group-item-action mb-3" style="padding: 0" 
+            <a class="list-group-item list-group-item-action mb-3" style="padding: 0"
                asp-controller="Posts" asp-action="Index" asp-route-title="@item.PostTitle">
-                <div class="card">    
+                <div class="card">
 
                     <div class="card-body">
                         <h4 class="card-title">
@@ -25,6 +29,11 @@
 
                         <p class="card-text">
                             @Html.DisplayFor(modelItem => item.Question.Content)
+
+                            @if (myUser.IsAdmin)
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.PostTitle">Delete</a>
+                            }
                         </p>
                     </div>
 

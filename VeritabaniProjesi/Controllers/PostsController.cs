@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Routing;
@@ -10,15 +12,20 @@ using Microsoft.EntityFrameworkCore;
 using VeritabaniProjesi.Data;
 using VeritabaniProjesi.Models;
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+
 namespace VeritabaniProjesi.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly BasicDataContext _contents;
+        private readonly BasicDataContext _context;
+        private readonly UserManager<MyUser> _userManager;
 
-        public PostsController(BasicDataContext contents)
+        public PostsController(BasicDataContext context, UserManager<MyUser> userManager)
         {
-            _contents = contents;
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Posts
@@ -30,7 +37,7 @@ namespace VeritabaniProjesi.Controllers
             TempData["Title"] = title;
 
 
-            var pages = from p in _contents.Posts select p;
+            var pages = from p in _context.Posts select p;
 
             if (!string.IsNullOrEmpty(title))
                 pages = pages.Where(s => s.PostTitle == title);
@@ -46,7 +53,7 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             
 
-            var post = await _contents.Posts
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
@@ -57,6 +64,7 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize]
         public IActionResult Create([FromQuery(Name = "title")]string? title)
         {
             if (title == null)
@@ -69,7 +77,7 @@ namespace VeritabaniProjesi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Create([Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
         {
             if (post.PostTitle == null)
@@ -77,10 +85,13 @@ namespace VeritabaniProjesi.Controllers
 
             if (ModelState.IsValid)
             {
-                SetPostValuesToDefault(ref post);
+                var user  = _userManager.GetUserAsync(User);
 
-                _contents.Add(post);
-                await _contents.SaveChangesAsync();
+                SetPostValuesToDefault(ref post);
+                post.Sender = user.Result.NickName;
+
+                _context.Add(post);
+                await _context.SaveChangesAsync();
 
 
                 return RedirectToAction(nameof(Index), new { title = post.PostTitle});
@@ -90,6 +101,7 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(string? title, int? id)
         {
             if (id == null  || title == null)
@@ -97,7 +109,7 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var post = await _contents.Posts.FindAsync(id);
+            var post = await _context.Posts.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
@@ -110,7 +122,7 @@ namespace VeritabaniProjesi.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
         {
             if (id != post.Id)
@@ -124,8 +136,8 @@ namespace VeritabaniProjesi.Controllers
                 {
                     SetPostValuesToDefault(ref post);
 
-                    _contents.Update(post);
-                    await _contents.SaveChangesAsync();
+                    _context.Update(post);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -144,6 +156,7 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(string title, int? id)
         {
             if (id == null)
@@ -151,7 +164,7 @@ namespace VeritabaniProjesi.Controllers
                 return NotFound();
             }
 
-            var post = await _contents.Posts
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
@@ -163,18 +176,19 @@ namespace VeritabaniProjesi.Controllers
 
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken, Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var post = await _contents.Posts.FindAsync(id);
-            _contents.Posts.Remove(post);
-            await _contents.SaveChangesAsync();
+
+            var post = await _context.Posts.FindAsync(id);
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index), new {title = TempData["Title"]});
         }
 
         private bool PostExists(int id)
         {
-            return _contents.Posts.Any(e => e.Id == id);
+            return _context.Posts.Any(e => e.Id == id);
         }
 
         private void SetPostValuesToDefault(ref Post post)
