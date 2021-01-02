@@ -26,6 +26,14 @@ namespace VeritabaniProjesi.Models
 
                 return SourceListString.Split(';');
             }
+
+            set
+            {
+                SourceListString = "";
+                foreach (string s in value)
+                    SourceListString += s + ';';
+                
+            }
         }
 
         [DataType(DataType.DateTime)] public DateTime Date { get; set; }

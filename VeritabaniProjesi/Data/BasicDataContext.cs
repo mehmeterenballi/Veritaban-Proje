@@ -8,18 +8,18 @@ using VeritabaniProjesi.Models;
 
 namespace VeritabaniProjesi.Data
 {
-    public class DataContext : DbContext
+    public class BasicDataContext : DbContext
     {
         public DbSet<Post> Posts { get; set;}
         public DbSet<Title> Titles { get; set;}
         public DbSet<Announcement> Announcements { get; set; }
 
-        public DataContext(DbContextOptions<DataContext> options): base(options) {}
+
+        public BasicDataContext(DbContextOptions<BasicDataContext> options): base(options) {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseOracle(ODBConnector.connectionString);
         }
-
     }
 }

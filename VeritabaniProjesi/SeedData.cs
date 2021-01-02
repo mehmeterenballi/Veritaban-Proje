@@ -12,8 +12,8 @@ namespace VeritabaniProjesi.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new DataContext(
-                serviceProvider.GetRequiredService<DbContextOptions<DataContext>>()))
+            using (var context = new BasicDataContext(
+                serviceProvider.GetRequiredService<DbContextOptions<BasicDataContext>>()))
             {
                 Post firstMessage = new Post
                 {

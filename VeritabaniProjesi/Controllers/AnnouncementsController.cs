@@ -12,9 +12,9 @@ namespace VeritabaniProjesi.Controllers
 {
     public class AnnouncementsController : Controller
     {
-        private readonly DataContext _context;
+        private readonly BasicDataContext _context;
 
-        public AnnouncementsController(DataContext context)
+        public AnnouncementsController(BasicDataContext context)
         {
             _context = context;
         }

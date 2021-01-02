@@ -8,8 +8,8 @@ using VeritabaniProjesi.Data;
 
 namespace VeritabaniProjesi.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(BasicDataContext))]
+    partial class BasicDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

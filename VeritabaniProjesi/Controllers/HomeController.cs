@@ -14,10 +14,10 @@ namespace VeritabaniProjesi.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly DataContext _context;
+        private readonly BasicDataContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(DataContext context, ILogger<HomeController> logger)
+        public HomeController(BasicDataContext context, ILogger<HomeController> logger)
         {
             _context = context;
             _logger = logger;
