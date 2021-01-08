@@ -10,8 +10,8 @@ using VeritabaniProjesi.Data;
 namespace VeritabaniProjesi.Migrations
 {
     [DbContext(typeof(BasicDataContext))]
-    [Migration("20210102113531_BasicTables")]
-    partial class BasicTables
+    [Migration("20210106111617_BasicDataScheme")]
+    partial class BasicDataScheme
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,9 @@ namespace VeritabaniProjesi.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<string>("PeopleWhoLikedString")
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("PostTitle")
                         .HasColumnType("NVARCHAR2(20)")

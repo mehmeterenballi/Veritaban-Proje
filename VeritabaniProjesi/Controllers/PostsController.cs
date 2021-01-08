@@ -1,4 +1,7 @@
-﻿using System;
+﻿#nullable enable
+
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,7 +16,9 @@ using VeritabaniProjesi.Data;
 using VeritabaniProjesi.Models;
 
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Options;
+
 
 namespace VeritabaniProjesi.Controllers
 {
@@ -198,6 +203,35 @@ namespace VeritabaniProjesi.Controllers
 
             post.Date = DateTime.Now;
             post.Rating = 0;
+        }
+
+        [HttpPost, Authorize]
+        public async Task<int> Like(int id, int value)
+        {
+            MyUser user = await _userManager.GetUserAsync(User);
+
+            Post post = await _context.Posts.FindAsync(id);
+
+            if (post == null)
+                throw new Exception("ID Not Found");
+
+            if ((value == 1 || value == -1) && !post.PeopleWhoLiked.Contains(user.NickName))
+            {
+                post.Rating += value;
+
+                var pwl = post.PeopleWhoLiked;
+                pwl.Add(user.NickName);
+
+                post.PeopleWhoLiked = pwl;
+
+                _context.Update(post);
+
+                //Debug.WriteLine(post.PeopleWhoLikedString);
+                await _context.SaveChangesAsync();
+            }
+
+
+            return post.Rating;
         }
     }
 }

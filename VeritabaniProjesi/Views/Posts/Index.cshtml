@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<VeritabaniProjesi.Models.Post>
 
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.CodeAnalysis
 
 @inject SignInManager<MyUser> SignInManager
 @inject UserManager<MyUser> UserManager
@@ -11,73 +12,124 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create" asp-route-title="@Model.First().PostTitle">Create New</a>
-</p>
+<div class="container">
+    <h1>@Model.First().PostTitle</h1>
+    <p>
+        <a asp-action="Create" asp-route-title="@Model.First().PostTitle">Cevap Ver</a>
+    </p>
 
-@if (Model.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.PostTitle)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sender)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Content)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Rating)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        
-        @{ MyUser myUser = UserManager.GetUserAsync(User).Result;}
-        @foreach (var item in Model)
+    @if (Model.Any())
+    {
+        MyUser myUser = UserManager.GetUserAsync(User).Result;
+
+
+        @if (myUser != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PostTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
+            <script>
+                const addLikeButtonListener = (buttonName, buttonId, value, buttonParent = null, ratingName = null) => {
+                    buttonName += buttonId;
 
 
-                <td>
-                    @if (myUser.NickName == item.Sender || myUser.IsAdmin)
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Edit</a>
-                        <a asp-action="Details" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Delete</a>
-                    }
-                </td>
-            </tr>
+                    if (typeof (buttonName) !== "string" && typeof(value) !== "string")
+                        throw "type must be string";
+
+                    $(buttonName).click(() => {
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("Like")',
+                            data: { id: buttonId, value: value },
+                            dataType: "text",
+                            success: (msg) => {
+                                if (buttonParent != null) {
+                                    buttonParent += buttonId;
+                                    $(buttonParent).html("<p>You Have Already Voted!</p>");
+                                }
+
+                                if (ratingName != null) {
+                                    ratingName += buttonId;
+                                    $(ratingName).text(msg);
+                                }
+                            },
+                            error: (req, status, error) => { console.log(error); }
+                        });
+                    });
+
+                }
+            </script>
         }
-        </tbody>
-    </table>
-}
 
-else
-{
-    <h3 class="container">No Entry Has Been Found</h3>
-}
+
+        <div class="list-group">
+            @foreach (var item in Model)
+            {
+                bool canEdit = myUser != null && (myUser.NickName == item.Sender || myUser.IsAdmin);
+
+
+                <div class="list-group-item mb-3" style="padding: 0">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </p>
+                        </div>
+
+                        <div class="card-footer text-muted flex-row d-flex justify-content-between">
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Sender)
+                            </div>
+
+                            @if (canEdit)
+                            {
+                                <div class="d-flex row">
+                                    <div class="text-nowrap col-md-4" align="center">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Edit</a>
+                                    </div>
+                                    <div class="text-nowrap col-md-4" align="center">
+                                        <a class="align-items-center" asp-action="Details" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Details</a>
+                                    </div>
+                                    <div class="text-nowrap col-md-4" align="center">
+                                        <a class="align-items-center" asp-action="Delete" asp-route-id="@item.Id" asp-route-title="@ViewData["Title"]">Delete</a>
+                                    </div>
+                                </div>
+                            }
+
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id ="Rating@(item.Id)">@item.Rating</div>
+
+                if (myUser != null)
+                {
+                    if (!item.PeopleWhoLiked.Contains(myUser.NickName))
+                    {
+                        <div id="PostButtons@(item.Id)">
+                            <button id="LikeButton@(item.Id)">Like</button>
+                            <script>addLikeButtonListener("#LikeButton", "@(item.Id)", "1", "#PostButtons", "#Rating")</script>
+
+                            <button id="DislikeButton@(item.Id)">Dislike</button>
+                            <script>addLikeButtonListener("#DislikeButton", "@(item.Id)", "-1", "#PostButtons", "#Rating")</script>
+                        </div>
+                    }
+
+                    else
+                    {
+                        <p>You Have Already Voted!</p>
+                    }
+
+                }
+            }
+        </div>
+
+    }
+
+    else
+    {
+        <h3 class="container">No Entry Has Been Found</h3>
+    }
+</div>

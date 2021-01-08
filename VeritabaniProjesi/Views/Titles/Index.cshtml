@@ -18,32 +18,34 @@
         @{ MyUser myUser = UserManager.GetUserAsync(User).Result;}
         @foreach (var item in Model)
         {
-            <a class="list-group-item list-group-item-action mb-3" style="padding: 0"
-               asp-controller="Posts" asp-action="Index" asp-route-title="@item.PostTitle">
-                <div class="card">
+            <a class="text-dark" style="text-decoration: none !important" asp-controller="Posts" asp-action="Index" asp-route-title="@item.PostTitle">
+                <div class="list-group-item mb-3" style="padding: 0">
+                    <div class="card m-0">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                @Html.DisplayFor(modelItem => item.PostTitle)
+                            </h4>
 
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            @Html.DisplayFor(modelItem => item.PostTitle)
-                        </h4>
-
-                        <p class="card-text">
-                            @Html.DisplayFor(modelItem => item.Question.Content)
-
-                            @if (myUser.IsAdmin)
-                            {
-                                <a asp-action="Delete" asp-route-id="@item.PostTitle">Delete</a>
-                            }
-                        </p>
-                    </div>
-
-                    <div class="card-footer text-muted flex-row d-flex justify-content-between">
-                        <div>
-                            @Html.DisplayFor(modelItem => item.Question.Sender)
+                            <p class="card-text">
+                                @Html.DisplayFor(modelItem => item.Question.Content)
+                            </p>
                         </div>
 
-                        <div>
-                            @Html.DisplayFor(modelItem => item.Date)
+                        <div class="card-footer text-muted flex-row d-flex justify-content-between">
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Question.Sender)
+                            </div>
+                            
+                            @if (myUser.IsAdmin)
+                            {
+                                <div class="text-nowrap col-md-4" align="center">
+                                    <a class="align-items-center" asp-action="Delete" asp-route-id="@item.PostTitle" asp-route-title="@ViewData["Title"]">Delete</a>
+                                </div>
+                            }
+
+                            <div>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </div>
                         </div>
                     </div>
                 </div>
