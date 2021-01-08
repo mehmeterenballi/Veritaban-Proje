@@ -52,6 +52,9 @@ namespace VeritabaniProjesi.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TIMESTAMP(7)");
 
+                    b.Property<string>("PeopleWhoLikedString")
+                        .HasColumnType("NVARCHAR2(2000)");
+
                     b.Property<string>("PostTitle")
                         .HasColumnType("NVARCHAR2(20)")
                         .HasMaxLength(20);

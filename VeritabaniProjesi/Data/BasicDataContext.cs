@@ -14,7 +14,6 @@ namespace VeritabaniProjesi.Data
         public DbSet<Title> Titles { get; set;}
         public DbSet<Announcement> Announcements { get; set; }
 
-
         public BasicDataContext(DbContextOptions<BasicDataContext> options): base(options) {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
