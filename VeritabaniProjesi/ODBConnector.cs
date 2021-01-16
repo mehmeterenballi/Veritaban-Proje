@@ -17,6 +17,7 @@ namespace VeritabaniProjesi
     {
         public const string connectionString = @"User Id=SYSTEM; Password=1234qwer;" +
                                                @"Data Source = defaultDatabase";
+
         public static void ConfigureODB()
         {
             // This sample demonstrates how to use ODP.NET Core Configuration API
@@ -63,5 +64,19 @@ namespace VeritabaniProjesi
             });
         }
 
+
+        public static bool HasUserBanned(string email)
+        {
+            OracleConnection conntection = new OracleConnection(connectionString);
+            conntection.Open();
+
+            OracleCommand cmd = new OracleCommand($"SELECT * FROM BannedUsers WHERE \"Email\" = '{email}'");
+            cmd.Connection = conntection;
+            OracleDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+                return true;
+
+            return false;
+        }
     }
 }
