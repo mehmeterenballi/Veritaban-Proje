@@ -49,7 +49,7 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostId, Content, Sender, Date")] CreateTitleViewModel ctvm)
+        public async Task<IActionResult> Create([Bind("PostTitle, Content")] CreateTitleViewModel ctvm)
         {
             Title title = new Title();
 
