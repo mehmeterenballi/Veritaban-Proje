@@ -10,7 +10,7 @@ using VeritabaniProjesi.Data;
 namespace VeritabaniProjesi.Migrations
 {
     [DbContext(typeof(BasicDataContext))]
-    [Migration("20210106111617_BasicDataScheme")]
+    [Migration("20210116145916_BasicDataScheme")]
     partial class BasicDataScheme
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,31 @@ namespace VeritabaniProjesi.Migrations
                     b.HasKey("Title");
 
                     b.ToTable("Announcements");
+                });
+
+            modelBuilder.Entity("VeritabaniProjesi.Models.BlackList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("NUMBER(10)")
+                        .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<string>("Sender")
+                        .HasColumnType("NVARCHAR2(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("TIMESTAMP(7)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BlackList");
                 });
 
             modelBuilder.Entity("VeritabaniProjesi.Models.Post", b =>

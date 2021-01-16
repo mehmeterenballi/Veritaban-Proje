@@ -57,6 +57,37 @@
 
                 }
             </script>
+
+            if (myUser.IsAdmin)
+            {
+                <script>
+                    const addBanButtonListener = (buttonName, buttonId, sender, buttonParent = null) => {
+                    buttonName += buttonId;
+
+
+                    if (typeof (buttonName) !== "string" && typeof(value) !== "string")
+                        throw "type must be string";
+
+                    $(buttonName).click(() => {
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("BanishUser")',
+                            data: {id: buttonId, nickName: sender},
+                            dataType: "text",
+                            success: msg => {
+                                console.log(msg);
+                                if (buttonParent != null) {
+                                    buttonParent += buttonId;
+                                    $(buttonParent).html("This post will be deleted on refresh.");
+                                }
+                            },
+                            error: (req, status, error) => { console.log(error); }
+                        });
+                    });
+
+                }
+                </script>
+            }
         }
 
 
@@ -99,30 +130,40 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <div class="col-3" id ="Rating@(item.Id)"><h3>@item.Rating Likes</h3></div>
 
-
-                <div id ="Rating@(item.Id)">@item.Rating</div>
-
-                if (myUser != null)
-                {
-                    if (!item.PeopleWhoLiked.Contains(myUser.NickName))
+                    @if (myUser != null)
                     {
-                        <div id="PostButtons@(item.Id)">
-                            <button id="LikeButton@(item.Id)">Like</button>
-                            <script>addLikeButtonListener("#LikeButton", "@(item.Id)", "1", "#PostButtons", "#Rating")</script>
+                        <div class="col-9">
+                            @if (!item.PeopleWhoLiked.Contains(myUser.NickName))
+                            {
+                                <div id="PostButtons@(item.Id)">
+                                    <button class="btn btn-success" id="LikeButton@(item.Id)">Like</button>
+                                    <script>addLikeButtonListener("#LikeButton", "@(item.Id)", "1", "#PostButtons", "#Rating")</script>
 
-                            <button id="DislikeButton@(item.Id)">Dislike</button>
-                            <script>addLikeButtonListener("#DislikeButton", "@(item.Id)", "-1", "#PostButtons", "#Rating")</script>
+                                    <button class="btn btn-secondary" id="DislikeButton@(item.Id)">Dislike</button>
+                                    <script>addLikeButtonListener("#DislikeButton", "@(item.Id)", "-1", "#PostButtons", "#Rating")</script>
+                                    
+                                </div>
+                            }
+
+                            else
+                            {
+                                <p>You Have Already Voted!</p>
+                            }
+
+                            
+                            @if (myUser.IsAdmin)
+                            {
+                                <div id="BanButtons@(item.Id)">
+                                    <button class="btn btn-danger" id="BanButton@(item.Id)">Ban User</button>
+                                    <script>addBanButtonListener("#BanButton", "@(item.Id)", "@(item.Sender)", "#BanButtons")</script>
+                                </div>
+                            }
                         </div>
                     }
-
-                    else
-                    {
-                        <p>You Have Already Voted!</p>
-                    }
-
-                }
+                </div>
             }
         </div>
 

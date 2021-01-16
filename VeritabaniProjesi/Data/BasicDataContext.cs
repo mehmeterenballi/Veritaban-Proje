@@ -13,6 +13,8 @@ namespace VeritabaniProjesi.Data
         public DbSet<Post> Posts { get; set;}
         public DbSet<Title> Titles { get; set;}
         public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<BlackList> BlackList { get; set;}
+
 
         public BasicDataContext(DbContextOptions<BasicDataContext> options): base(options) {}
 

@@ -23,6 +23,22 @@ namespace VeritabaniProjesi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BlackList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
+                    PostId = table.Column<int>(nullable: false),
+                    Sender = table.Column<string>(maxLength: 20, nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlackList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -69,6 +85,9 @@ namespace VeritabaniProjesi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Announcements");
+
+            migrationBuilder.DropTable(
+                name: "BlackList");
 
             migrationBuilder.DropTable(
                 name: "Titles");

@@ -30,7 +30,16 @@
                             <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Cikis Yap</button>
                         </form>
                     </li>
-                }
+
+                    MyUser user = await UserManager.GetUserAsync(User);
+                    if (user != null && user.IsAdmin)
+                    {
+                        <li class="nav-item">
+                            <a id="manage" class="nav-link" asp-area="" asp-controller="Announcements" asp-action="Index">Duyurulari Yonet</a>
+                        </li>
+                    }
+
+                } 
                 else
                 {
                     <li class="nav-item">
