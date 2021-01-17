@@ -11,6 +11,12 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE PROCEDURE UnbanUsers IS
+BEGIN
+    DELETE FROM "BlackList" WHERE "EndDate" > trunc(sysdate);
+END;
+/
+
 
 /*SELECT * FROM "Posts";
 SELECT * FROM "BlackList";
@@ -20,6 +26,7 @@ DELETE FROM "BlackList";
 
 
 EXEC BannishUser(2, 'WhiteHare');
+EXEC UnbanUsers;
 
 
 CREATE VIEW Admins AS SELECT * FROM "AspNetUsers" WHERE "IsAdmin" = 1;
