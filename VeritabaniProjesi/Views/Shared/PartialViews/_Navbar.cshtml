@@ -20,24 +20,35 @@
                        style="margin-right:20px;">Ana Sayfa <span class="sr-only">(current)</span></a>
                 </li>
 
+
                 @if (SignInManager.IsSignedIn(User))
                 {
+                    
                     <li class="nav-item">
-                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Merhaba, @UserManager.GetUserName(User)!</a>
+                        <p class="nav-link">Merhaba, @UserManager.GetUserName(User)!</p>
                     </li>
                     <li class="nav-item">
                         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Cikis Yap</button>
+                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Çıkış Yap</button>
                         </form>
                     </li>
-                }
+
+                    MyUser user = await UserManager.GetUserAsync(User);
+                    if (user != null && user.IsAdmin)
+                    {
+                        <li class="nav-item">
+                            <a id="manage" class="nav-link" asp-area="" asp-controller="Announcements" asp-action="Index">Duyuruları Yönet</a>
+                        </li>
+                    }
+
+                } 
                 else
                 {
                     <li class="nav-item">
-                        <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Kayit Ol</a>
+                        <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Kayıt Ol</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Giris Yap</a>
+                        <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Giriş Yap</a>
                     </li>
                 }
 

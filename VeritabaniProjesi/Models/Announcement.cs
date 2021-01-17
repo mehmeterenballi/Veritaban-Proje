@@ -14,17 +14,17 @@ namespace VeritabaniProjesi.Models
         [Key, NotNull, MaxLength(40), Required]
         public string Title { get; set; }
         public string Content { get; set; }
-        public string SourceListString { get; set; }
+        [Display(Name = "Linkler(\";\" sembolu ile ayirin.)")]public string SourceListString { get; set; }
 
         [NotMapped]
-        public string[] SourceList
+        public List<string> SourceList
         {
             get
             {
                 if (SourceListString == null)
-                    return null;
+                    return new List<string>();
 
-                return SourceListString.Split(';');
+                return SourceListString.Split(';').ToList();
             }
 
             set

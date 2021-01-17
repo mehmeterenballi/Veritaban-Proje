@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +15,13 @@ namespace VeritabaniProjesi.Controllers
     public class AnnouncementsController : Controller
     {
         private readonly BasicDataContext _context;
+        private readonly UserManager<MyUser> _userManager;
 
-        public AnnouncementsController(BasicDataContext context)
+
+        public AnnouncementsController(BasicDataContext context, UserManager<MyUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Announcements
@@ -44,6 +49,7 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Announcements/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -52,12 +58,19 @@ namespace VeritabaniProjesi.Controllers
         // POST: Announcements/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Content,Date")] Announcement announcement)
+        public async Task<IActionResult> Create([Bind("Title,Content,Date, SourceListString")] Announcement announcement)
         {
+            MyUser user  = await _userManager.GetUserAsync(User);
+            if (user == null || user.IsAdmin == false)
+                return null;
+
+
             if (ModelState.IsValid)
             {
+                announcement.Date = DateTime.UtcNow;
+                announcement.SourceList = announcement.SourceListString.Split(';').ToList();
                 _context.Add(announcement);
 
                 await _context.SaveChangesAsync();
@@ -67,8 +80,13 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Announcements/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
+            MyUser user  = await _userManager.GetUserAsync(User);
+            if (user == null || user.IsAdmin == false)
+                return null;
+
             if (id == null)
             {
                 return NotFound();
@@ -85,10 +103,14 @@ namespace VeritabaniProjesi.Controllers
         // POST: Announcements/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Title,Content,Date")] Announcement announcement)
+        public async Task<IActionResult> Edit(string id, [Bind("Title,Content, Date, SourceListString")] Announcement announcement)
         {
+            MyUser user  = await _userManager.GetUserAsync(User);
+            if (user == null || user.IsAdmin == false)
+                return null;
+
             if (id != announcement.Title)
             {
                 return NotFound();
@@ -118,8 +140,13 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // GET: Announcements/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
+            MyUser user  = await _userManager.GetUserAsync(User);
+            if (user == null || user.IsAdmin == false)
+                return null;
+
             if (id == null)
             {
                 return NotFound();
@@ -136,10 +163,14 @@ namespace VeritabaniProjesi.Controllers
         }
 
         // POST: Announcements/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
+            MyUser user  = await _userManager.GetUserAsync(User);
+            if (user == null || user.IsAdmin == false)
+                return null;
+
             var announcement = await _context.Announcements.FindAsync(id);
             _context.Announcements.Remove(announcement);
             await _context.SaveChangesAsync();

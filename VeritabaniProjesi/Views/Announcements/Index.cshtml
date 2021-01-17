@@ -5,24 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container" style="margin-top:50px;">
+<h1>Duyurular</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Yenisini Oluştur</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
+                İçerik<!--@Html.DisplayNameFor(model => model.Content)-->
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SourceListString)
+                Kaynaklar<!--@Html.DisplayNameFor(model => model.SourceListString)-->
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Tarih<!--@Html.DisplayNameFor(model => model.Date)-->
             </th>
-            <th></th>
+            <th>İşlemler</th>
         </tr>
     </thead>
     <tbody>
@@ -38,11 +39,12 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Title">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Title">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Title">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Title">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Title">Detaylar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Title">Sil</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+    </div>

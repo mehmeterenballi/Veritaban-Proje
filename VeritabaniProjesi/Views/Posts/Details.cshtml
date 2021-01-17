@@ -5,10 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+
+<div class="container">
+<h1>Detaylar</h1>
 
 <div>
-    <h4>Post</h4>
+    <h4>Gönderi</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -44,6 +46,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index", asp-route-title="@TempData["Title"]">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+    <a asp-action="Index", asp-route-title="@TempData["Title"]">Listeye Geri Dön</a>
 </div>
+    </div>

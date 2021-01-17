@@ -83,7 +83,7 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken, Authorize]
-        public async Task<IActionResult> Create([Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,PostTitle,Sender,Content,Rating,Date,PeopleWhoLikedString")] Post post)
         {
             if (post.PostTitle == null)
                 return NotFound();
@@ -128,7 +128,7 @@ namespace VeritabaniProjesi.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken, Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PostTitle,Sender,Content,Rating,Date")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PostTitle,Sender,Content,Rating,Date,PeopleWhoLikedString")] Post post)
         {
             if (id != post.Id)
             {
@@ -199,7 +199,7 @@ namespace VeritabaniProjesi.Controllers
         private void SetPostValuesToDefault(ref Post post)
         {
             //post.Sender = ;
-            //post.PostTitle = ;
+            //post.PostId = ;
 
             post.Date = DateTime.Now;
             post.Rating = 0;
@@ -209,7 +209,6 @@ namespace VeritabaniProjesi.Controllers
         public async Task<int> Like(int id, int value)
         {
             MyUser user = await _userManager.GetUserAsync(User);
-
             Post post = await _context.Posts.FindAsync(id);
 
             if (post == null)
@@ -232,6 +231,28 @@ namespace VeritabaniProjesi.Controllers
 
 
             return post.Rating;
+        }
+
+        [HttpPost, Authorize]
+        public async void BanishUser(int id, string nickName)
+        {
+            MyUser user = await _userManager.GetUserAsync(User);
+            Post post = await _context.Posts.FindAsync(id);
+
+            if (post == null)
+                throw new Exception("ID Not Found");
+
+            if (user != null && user.IsAdmin)
+            {
+                BlackList bannedUser = new BlackList
+                    {Sender = nickName, StartDate = DateTime.UtcNow, EndDate = DateTime.Now.AddDays(7), PostId = id};
+
+                await _context.AddAsync(bannedUser);
+                _context.Remove(post);
+
+                await _context.SaveChangesAsync();
+
+            }
         }
     }
 }

@@ -1,13 +1,15 @@
 ﻿@model VeritabaniProjesi.Models.Announcement
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Düzenle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
 
-<h4>Announcement</h4>
+<div class="container" style="margin-top:50px;">
+<h1>Düzenle</h1>
+
+<h4>Duyuru</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,28 +17,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Title" />
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
+                <label asp-for="Content" class="control-label">İçerik</label>
                 <input asp-for="Content" class="form-control" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SourceListString" class="control-label"></label>
+                <label asp-for="SourceListString" class="control-label">Kaynaklar</label>
                 <input asp-for="SourceListString" class="form-control" />
                 <span asp-validation-for="SourceListString" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
+                <label asp-for="Date" class="control-label">Tarih</label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Listeye Geri Dön</a>
 </div>
 
+    </div>
