@@ -9,7 +9,7 @@
 }
 
 <div class="container">
-    <h1>Basliklar</h1>
+    <h1>Başlıklar</h1>
 
     <p>
         <a asp-action="Create">Soru Sor</a>
@@ -36,10 +36,10 @@
                                 @Html.DisplayFor(modelItem => item.Question.Sender)
                             </div>
                             
-                            @if (myUser.IsAdmin)
+                            @if (myUser != null && myUser.IsAdmin)
                             {
                                 <div class="text-nowrap col-md-4" align="center">
-                                    <a class="align-items-center" asp-action="Delete" asp-route-id="@item.PostTitle" asp-route-title="@ViewData["Title"]">Delete</a>
+                                    <a class="align-items-center" asp-action="Delete" asp-route-id="@item.PostTitle" asp-route-title="@ViewData["Title"]">Sil</a>
                                 </div>
                             }
 

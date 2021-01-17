@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj": {}
+    "C:\\Users\\Mehmet\\Desktop\\Veritaban-Proje-main\\VeritabaniProjesi\\VeritabaniProjesi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj": {
+    "C:\\Users\\Mehmet\\Desktop\\Veritaban-Proje-main\\VeritabaniProjesi\\VeritabaniProjesi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
+        "projectUniqueName": "C:\\Users\\Mehmet\\Desktop\\Veritaban-Proje-main\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
         "projectName": "VeritabaniProjesi",
-        "projectPath": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
-        "packagesPath": "C:\\Users\\Mete ARSLAN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mete ARSLAN\\Desktop\\GitHub\\Veritaban-Proje\\VeritabaniProjesi\\obj\\",
+        "projectPath": "C:\\Users\\Mehmet\\Desktop\\Veritaban-Proje-main\\VeritabaniProjesi\\VeritabaniProjesi.csproj",
+        "packagesPath": "C:\\Users\\Mehmet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mehmet\\Desktop\\Veritaban-Proje-main\\VeritabaniProjesi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mete ARSLAN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mehmet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
