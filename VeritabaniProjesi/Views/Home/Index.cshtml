@@ -1,4 +1,5 @@
-﻿@{
+﻿@model VeritabaniProjesi.ViewModels.HomeViewModel
+@{
     ViewData["Title"] = "Ana Sayfa";
 }
 
@@ -16,12 +17,15 @@
         </p>
 
         <div class=" p-3 m-3">
-            <a asp-area="" asp-controller="Home" asp-action="Register" class="btn btn-primary btn-lg">Kayit Ol</a>
-            <a asp-area="" asp-controller="Home" asp-action="Login" class="btn btn-primary btn-lg">Giris Yap</a>
+            <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg">Kayit Ol</a>
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary btn-lg">Giris Yap</a>
         </div>
     </div>
 </div>
 
+<div class="container">
+    @{ await Html.RenderPartialAsync("PartialViews/_Announcements", Model.Announcement);}
+</div>
 
 <div class="container-fluid" style="margin-top:20px;">
     <div class="row justify-content-center">
@@ -35,7 +39,9 @@
             <p class="lead">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in tortor in ex porttitor egestas. Donec semper fermentum diam quis tincidunt. Vivamus a mollis turpis. Pellentesque vel sodales justo, a rutrum tellus. Fusce non pulvinar justo. Cras ullamcorper ut neque nec ultricies. Mauris fermentum ex augue, at placerat quam blandit nec. Pellentesque consectetur id eros vitae pellentesque. Vestibulum convallis ac augue facilisis eleifend. Phasellus arcu eros, efficitur a sollicitudin sit amet, lacinia elementum est. Vestibulum tincidunt enim eu mi rutrum maximus. Praesent massa libero, eleifend et nunc tincidunt, sagittis lobortis ipsum. Nam commodo, arcu a scelerisque hendrerit, elit magna efficitur massa, eget dapibus risus ex eget tellus. Pellentesque turpis elit, blandit eu diam sit amet, egestas interdum purus.
             </p>
-            <button type="button" class="d-flex align-items-center btn btn-primary btn-lg">Soru Sor!</button>
+            <a class="btn btn-primary btn-lg" asp-controller="Titles" asp-action="Create">
+                Soru Sor!
+            </a>
         </div>
     </div>
 </div>

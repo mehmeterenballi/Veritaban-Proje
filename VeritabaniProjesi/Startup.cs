@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using VeritabaniProjesi.Controllers;
 using VeritabaniProjesi.Data;
+using VeritabaniProjesi.Models;
 
 
 namespace VeritabaniProjesi
@@ -29,9 +31,10 @@ namespace VeritabaniProjesi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             ODBConnector.ConfigureODB();
-            ODBConnector.AddDbContextToOracleDb<MyPostsContext>(services);
+            ODBConnector.AddDbContextToOracleDb<BasicDataContext>(services);
         }
  
 
@@ -55,13 +58,20 @@ namespace VeritabaniProjesi
 
             app.UseRouting();
 
+            app.UseAuthentication();//For Identity
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();//For Identity
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    "posts",
+                    "{controller=Posts}/{action=Index}/{searchString?}");
             });
         }
     }
